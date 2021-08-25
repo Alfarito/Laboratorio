@@ -1,0 +1,95 @@
+from sympy import symbols, Eq, var, solve
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+datos1=pd.read_excel("05 comprimida.xlsx",usecols=("A:J"),skiprows=1)
+
+print (datos1)
+
+Tiempot=np.array(datos1["TT"])
+
+posiciónt=np.array(datos1["YT"])
+
+Tiempoc=np.array(datos1["TC"])
+
+posiciónc=np.array(datos1["YC"])
+
+Tiempoext=np.array(datos1["TE"])
+
+posiciónext=np.array(datos1["YE"])
+
+plt.figure()
+plt.plot(Tiempot,posiciónt,"g.", label="Teórica") 
+plt.plot(Tiempoc,posiciónc,"b.",label="Comprimida")
+plt.plot(Tiempoext,posiciónext,"r.",label="Extendida")
+plt.ylabel("y $[m]$")
+plt.xlabel("t $[s]$ ")
+
+plt.legend()
+
+datos2=pd.read_excel("05 comprimida.xlsx",usecols=("H:M"),skiprows=1)
+
+print (datos2)
+
+Tiempot1=np.array(datos2["TT1"])
+
+velocidadt=np.array(datos2["VT1"])
+
+Tiempoc1=np.array(datos2["TC.1"])
+
+velocidadc=np.array(datos2["VC"])
+
+Tiempoex1=np.array(datos2["TE.1"])
+
+velocidadext=np.array(datos2["VE"])
+
+plt.figure()
+plt.plot(Tiempot1,velocidadt,"g.",label="Teórica")
+plt.plot(Tiempoc1,velocidadc,"b.",label="Comprimida")
+plt.plot(Tiempoex1, velocidadext,"r.",label="Extendida" )
+plt.ylabel("v $[m/s]$")
+plt.xlabel("t $[s]$ ")
+
+plt.legend()
+
+datos4=pd.read_excel("pythondatos.xlsx",usecols=("A:J"),skiprows=1)
+
+print(datos4)
+
+Tiempote=np.array(datos4["Tteo"])
+
+Veloteo=np.array(datos4["Vteo"])
+
+Tiempoexpe=np.array(datos4["Texp"])
+
+Velocexpe=np.array(datos4["Vexp"])
+
+plt.figure()
+plt.plot(Tiempote,Veloteo,"g.",label="Teórica")
+plt.plot(Tiempoexpe,Velocexpe,"r.",label="Extendida" )
+plt.ylabel("v $[m/s]$")
+plt.xlabel("t $[s]$ ")
+
+plt.legend()
+
+Velteo=np.array(datos4["Vteo1"])
+
+Fuerzateo=np.array(datos4["Fteo1"])
+
+Velexp2=np.array(datos4["Vexp2"])
+
+Fuerzaexp2=np.array(datos4["Fteo2"])
+
+Velexp3=np.array(datos4["Vexp3"])
+
+Fuerzaexp3=np.array(datos4["Fexp3"])
+
+plt.figure()
+plt.plot(Velteo,Fuerzateo,"g.",label="Fuerza teórica")
+plt.plot(Velexp2,Fuerzaexp2,"r.",label="Fuerza semi-teórica" )
+plt.plot(Velexp3,Fuerzaexp3,"k.",label="Fuerza experimental" )
+plt.ylabel("F $[N]$")
+plt.xlabel("v $[m/s]$")
+
+plt.legend()
