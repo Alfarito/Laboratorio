@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <string>
+#include <iomanip>
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+
+using namespace std;
+int main(){
+	
+double k=.03005205;
+double g=9.81;
+double m=.0023;
+double y=.5,v=0.,dt=.033;
+
+//movimiento teorico sin fricción
+
+ofstream V;
+V.open("velocidad.dat");
+ofstream Y;
+Y.open("posicion.dat");
+
+V<<v<<endl;
+Y<<y<<endl;
+do{
+	v=v-g*dt;
+	y=y+v*dt-(g/2.)*pow(dt,2.);
+	V<<v<<endl;
+	Y<<y<<endl;
+}while(y>=0);
+	
+//velocidad con fricción
+ofstream vlim;
+vlim.open("velocidad_limite.dat");
+
+v=0.;
+double t = 0.;
+do{
+	v=((g*m)/k)*(exp(-(k*t)/m)-1);
+	vlim<<v<<endl;
+	t+=dt;
+}while(t<=1.2);
+
+
+return 0;
+}
